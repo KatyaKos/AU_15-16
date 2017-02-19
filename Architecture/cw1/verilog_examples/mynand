@@ -1,0 +1,47 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x826cad0 .scope module, "mynand_test" "mynand_test" 2 1;
+ .timescale 0 0;
+L_0x828ce70 .functor NAND 1, v0x828cb38_0, v0x828cbb8_0, C4<1>, C4<1>;
+v0x828cb38_0 .var "A", 0 0;
+v0x828cbb8_0 .var "B", 0 0;
+v0x828cc28_0 .net "C0", 0 0, L_0x828cdc8; 1 drivers
+v0x828cc98_0 .net "C1", 0 0, L_0x828ce70; 1 drivers
+S_0x826cb50 .scope module, "nand1" "mynand" 2 5, 3 1, S_0x826cad0;
+ .timescale 0 0;
+L_0x828cd00 .functor AND 1, v0x828cb38_0, v0x828cbb8_0, C4<1>, C4<1>;
+L_0x828cdc8 .functor NOT 1, L_0x828cd00, C4<0>, C4<0>, C4<0>;
+v0x826cbd0_0 .net "a", 0 0, v0x828cb38_0; 1 drivers
+v0x828ca10_0 .net "b", 0 0, v0x828cbb8_0; 1 drivers
+v0x828ca70_0 .net "d", 0 0, L_0x828cd00; 1 drivers
+v0x828cad0_0 .alias "y", 0 0, v0x828cc28_0;
+    .scope S_0x826cad0;
+T_0 ;
+    %set/v v0x828cb38_0, 0, 1;
+    %set/v v0x828cbb8_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 11 "$display", "%d %d", v0x828cc28_0, v0x828cc98_0;
+    %set/v v0x828cb38_0, 0, 1;
+    %set/v v0x828cbb8_0, 1, 1;
+    %delay 1, 0;
+    %vpi_call 2 14 "$display", "%d %d", v0x828cc28_0, v0x828cc98_0;
+    %set/v v0x828cb38_0, 1, 1;
+    %set/v v0x828cbb8_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 17 "$display", "%d %d", v0x828cc28_0, v0x828cc98_0;
+    %set/v v0x828cb38_0, 1, 1;
+    %set/v v0x828cbb8_0, 1, 1;
+    %delay 1, 0;
+    %vpi_call 2 20 "$display", "%d %d", v0x828cc28_0, v0x828cc98_0;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mynand_test.v";
+    "mynand.v";
