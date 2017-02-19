@@ -1,0 +1,4 @@
+#!/bin/bash
+
+chmod 555 hw0_5.sh
+cat hw0_5.sh > tmp.txt && cat tmp.txt > hw0_5.sh && rm tmp.txt

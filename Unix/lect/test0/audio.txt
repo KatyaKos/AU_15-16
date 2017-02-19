@@ -1,0 +1,8 @@
+.bash_profile
+workspace.doc
+sound.mp3
+good_music.wav
+documentation.html
+lossless.ogg
+smth.mp3.tmp
+access.lock

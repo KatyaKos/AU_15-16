@@ -1,0 +1,4 @@
+./temp/op.sh
+./temp/op.it
+./output.txt
+./try.txt

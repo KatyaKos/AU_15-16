@@ -1,0 +1,14 @@
+#!/bin/bash
+
+user='347745'
+
+wget -q -O out.txt "http://api.vk.com/method/users.get?user_ids=$user&fields=online"
+n=`cat out.txt | sed -re 's/.*online\":(.).*/\1/'`
+if [ $n -eq 0 ]
+then
+	echo "id$user is offline!"
+else
+	echo "id$user is online!"
+fi
+
+rm out.txt
