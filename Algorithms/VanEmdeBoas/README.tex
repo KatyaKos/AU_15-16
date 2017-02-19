@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{graphicx}
+
+\sloppy
+\voffset=-20mm
+\textheight=235mm
+\hoffset=-25mm
+\textwidth=180mm
+\headsep=12pt
+\footskip=20pt
+
+\begin{document}
+
+	\begin{center}
+		\textbf{\huge Дерево Ван Эмде Боса.}
+	\end{center}
+	Что нужно было сделать:
+	\begin{itemize}
+		\item Реализация \textbf{кучи} Ван Эмде Боса. У нее должны быть методы Add(x, C), Delete(x, C), ExtractMin, где C - ее верхняя граница (все элементы в куче по построению лежат в отрезке [0; C]).
+		\item Реализация Бинарной Кучи с методами Add(x), ExtractMin. Нужна для сравнения по времени работы.
+		\item Протестировать Ван Эмде Боса.
+		\item Сравнить время работы Van Emde Boas Heap, Binary Heap, priority\_queue (std).
+	\end{itemize}
+	Что сделала:
+	\begin{itemize}
+		\item Реализация Ван Эмде Боса есть \textit{(boas.cpp, boas.h)}
+		\item Реализация Бинарной Кучи есть \textit{(binary.cpp, binary.h)}
+		\item Генератор тестов для Ван Эмде Боса есть \textit{(boas\_test.cpp)}
+		\item Написан генератор тестов для сравнения времени работы и само сравнение \textit{(pq\_bin\_boas.cpp, main.cpp)}
+	\end{itemize}
+\pagebreak
+	\textbf{\Large Описание файлов.}\\
+	\textbf{boas.cpp}.\\
+	\verb'  'Тут реализованы методы класса VAB\_Heap. Особенность: методам Add и Delete надо передавать верхнюю границу промежутка, на котором работает куча. Наверное, можно было как-то задать дефолтное значение, но я не справилась с этим.\\
+	\textbf{binary.cpp}.\\
+	\verb'  'Реализация методов класса Bin\_Heap. Ничего особенного.\\
+	\textbf{boas\_test.cpp}.\\
+	\verb'  'Генератор тестов для тестирования кучи Ван Эмде Боса. Структура выходного файла boas\_test.in.
+	число ntests в первой строчке - количество тестов. Далее ntests блоков, в каждом из которых на первой строке число n - количество операций в тесте, далее n строк с описанием операций.\\
+	\verb'  'Каждая из n строк состоит из буквы A (Add), D (Delete) или E (ExtractMin) и числа x. Для добавления и удаления x - число, которое мы хотим удалить/добавить, для изъятия минимального - ответ, который мы должны получить.\\
+	\textbf{pq\_bin\_boas.cpp}.\\
+	\verb'  'Генератор тестов для сравнения по времени работы. Формат выходного файла pq\_bin\_boas.in тот же, что и в boas\_test.in, но только там нет операций Delete (т.к. их нет в очереди с приоритетом и бинарной куче) и после символа E не идет число.\\
+	\textbf{main.cpp}.\\
+	\verb'  'Первая часть программы ~--- проверка корректности написанной кучи Ван Эмде Боса. Результатом ее работы быть файл Boas\_results.txt, в котором столько же блоков, сколько было тестов, в каждом из которых на каждую операцию ExtractMin есть строка с выданным моей куче ответом и правильный ответом (его мы взяли из файла boas\_test.in).\\
+	\verb'  'Вторая часть ~--- сравнение времени работы трех структур. Результат ее работы ~--- файл Compare\_results.txt, где столько же блоков, столько было тестов, в каждом из которых три числа - время работы VAB, Bin и prior.
+	
+	
+\end{document}
